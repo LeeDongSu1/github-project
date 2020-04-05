@@ -7,6 +7,8 @@
 	<title>main</title>
 </head>
 <body>
+
+	<h2>hello java</h2>
 	<div><a href="<c:url value='/crawler'></c:url>">예제크롤러</a></div>
 	
 	<div><a href="<c:url value='/projMain'></c:url>">프로젝트 메인</a></div>
