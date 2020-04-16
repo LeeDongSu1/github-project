@@ -25,9 +25,11 @@
 	<insert id="crawler2" parameterType="hrefVO">
 	INSERT INTO
 		LINK(
-		LINK
+		TITLE
+		,LINK
 		)VALUES(
-		#{link}
+		#{title}
+		,#{link}
 		)
 	</insert>
 </mapper>

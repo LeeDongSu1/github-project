@@ -42,7 +42,7 @@ public class HomeController {
 	@RequestMapping(value = "crawler", method = RequestMethod.GET) 
 	   public String main() {
 		
-		String[] city ={"논현동"};
+		String[] city ={"삼성동"};
 		//"개포동","일원동","논현동","대치동","도곡동"
 		//"삼성동","세곡동","율현동","자곡동","수서동"
 		//"신사동","압구정동","역삼동","수서동","일원동"
@@ -51,7 +51,7 @@ public class HomeController {
 		ArrayList<String> place = new ArrayList<String>();
 		HrefVO vo2;
 		for (int i = 0; i < city.length; i++) {
-			String url = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+city[i]+"+술집";	
+			String url = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+city[i]+"+맛집";	
 		    
             String selector = "a.name";
             Document doc = null;       
@@ -65,13 +65,20 @@ public class HomeController {
            e.printStackTrace();
          }
          Elements titles = doc.body().select(selector);
-         
-         for (int j = 0; j < titles.size(); j++) {
+         System.out.println(titles.size() +"입니다");
+         for (int j = 1; j < titles.size(); j++) {
+        	 String title = titles.get(j).attr("title");
         	 String href = titles.get(j).attr("abs:href");	
+        	 link.add(title);
         	 link.add(href);
-        	 
+         
+         int temp2 = 2 * j;	 
+         
+         
         	//링크 db 삽입
-        	 vo2 = new HrefVO(link.get(j));
+        	 vo2 = new HrefVO(
+        		link.get(temp2-2)
+        		,link.get(temp2-1));
  			try {
  				dao.crawler2(vo2);	
  			} catch (Exception e) {
@@ -85,8 +92,9 @@ public class HomeController {
         System.out.println(link);  		//맛집 주소
         System.out.println(link.size());  //맛집 주소 개수
 		  
-		for (int k = 0; k < link.size(); k++) { 
-			String url2 = link.get(k);
+		for (int k = 1; k < link.size()/2+1; k++) { 
+			int temp3 = 2 * k;
+			String url2 = link.get(temp3-1);
 			   String selector2 = "strong.name";
 	           String selector3 = "div.txt";
 	           String selector4 = "span.category";
@@ -115,7 +123,7 @@ public class HomeController {
 		
 			  // DB에 저장
 		MemberVO vo;
-		for (int f = 1; f < link.size()+1; f++) {
+		for (int f = 1; f < link.size()/2+1; f++) {
 			int temp = 6 * f;
 			
 			vo = new MemberVO(

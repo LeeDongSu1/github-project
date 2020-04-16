@@ -59,47 +59,48 @@
 			<div class="container">
 				<div class="caption">
 					<h2>영업중인 식당 검색</h2>
-					<form action="<c:url value='/function/keyword'/>" method="get">
+					<form action="<c:url value='/function/keywordSearch'/>" method="get">
 						<fieldset>
 							<div class="col-md-4 col-sm-4 no-pad">
 								<input type="text" class="form-control border-right"
-								id="searchKeyword" placeholder="키워드 검색" />
+								id="searchKeyword" name="keyword" placeholder="키워드 검색" />
 							</div>
 							<div class="col-md-3 col-sm-3 no-pad">
 								<select class="selectpicker border-right" name="address">
-								  <option>지역선택(구)</option>
-								  <option>강남구</option>
-								  <option>강동구</option>
-								  <option>강서구</option>
-								  <option>강북구</option>
-								  <option>관악구</option>
-								  <option>광진구</option>
-								  <option>구로구</option>
-								  <option>금천구</option>
-								  <option>노원구</option>
-								  <option>동대문구</option>
-								  <option>도봉구</option>
-								  <option>동작구</option>
-								  <option>마포구</option>
-								  <option>서대문구</option>
-								  <option>성동구</option>
-								  <option>성북구</option>
-								  <option>서초구</option>
-								  <option>송파구</option>
-								  <option>영등포구</option>
-								  <option>용산구</option>
-								  <option>양천구</option>
-								  <option>은평구</option>
-								  <option>종로구</option>
-								  <option>중구</option>
-								  <option>중랑구</option>
+								  <option value="allregi">지역선택(구)</option>
+								  <option value="allregi">모든 지역</option>
+								  <option value="kn">강남구</option>
+								  <option value="kd">강동구</option>
+								  <option value="ks">강서구</option>
+								  <option value="kb">강북구</option>
+								  <option value="ka">관악구</option>
+								  <option value="kj">광진구</option>
+								  <option value="kr">구로구</option>
+								  <option value="kc">금천구</option>
+								  <option value="nw">노원구</option>
+								  <option value="ddm">동대문구</option>
+								  <option value="db">도봉구</option>
+								  <option value="dj">동작구</option>
+								  <option value="mp">마포구</option>
+								  <option value="sdm">서대문구</option>
+								  <option value="sd">성동구</option>
+								  <option value="sb">성북구</option>
+								  <option value="sc">서초구</option>
+								  <option value="sp">송파구</option>
+								  <option value="ydp">영등포구</option>
+								  <option value="ys">용산구</option>
+								  <option value="yc">양천구</option>
+								  <option value="yp">은평구</option>
+								  <option value="jongro">종로구</option>
+								  <option value="j">중구</option>
+								  <option value="jungrang">중랑구</option>
 								</select>
 							</div>
 							<div class="col-md-3 col-sm-3 no-pad">
-								<select class="selectpicker">
-								  <option>식당명</option>
-								  <option>카테고리</option>
-								  <option>Information & Technology</option>
+								<select class="selectpicker" name="choice">
+								  <option value="1">식당명</option>
+								  <option value="2">카테고리</option>
+								  <option value="3">전화번호</option>
 								</select>
 							</div>
 							<div class="col-md-2 col-sm-2 no-pad">
@@ -123,8 +124,7 @@
 				<div class="col-md-3 col-sm-3">
 					<div class="counter-text">
 						<span class="box1"><span aria-hidden="true" class="icon-expand"></span></span>
-						<h3><a >207</a></h3>
-						<p>All Companies</p>
+						<h3><a href="<c:url value='/function/searchMap'></c:url>">길찾기</a></h3>
 					</div>
 				</div>
 				

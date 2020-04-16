@@ -1,13 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="com.proj.web.dao.FunctionMapper">
-	<select id="placeList" resultType="MemberVO">
+	<select id="placeList" resultType="memberVO">
 	SELECT
 		*
 	FROM
 		place
 	</select>
 	
+	<select id="linkList" resultType="hrefVO">
+	SELECT
+		*
+	FROM
+		link
+	</select>
+	
+	
+	<select id="nearby" resultType="LocationVO" parameterType="locationVO">
+	select 
+	*
+	from 
+	site
+	ORDER BY calc_distance(latitude,longitude,#{latitude},#{longitude})
+	</select>
+	
+
+	<select id="keywordSearching" parameterType="map" resultType="memberVO">
+	SELECT
+		*
+	FROM
+		PLACE
+	WHERE
+		<if test="choice == 1">
+		TITLE like '%'||#{keyword}||'%'
+		</if>
+		<if test="choice == 3">
+		TELENUM like '%'||#{keyword}||'%' 
+		</if>
+		<if test="choice == 2">
+		(MENU like '%'||#{keyword}||'%' 
+		OR CATEGORY like '%'||#{keyword}||'%')   
+		</if>
+		
+		and ADDRESS LIKE
+		<if test='address == "allregi"'>'%'</if> 
+		<if test='address == "kn"' >'%'||'강남구'||'%'</if>
+		<if test='address == "kd"' >'%'||강동구||'%'</if>
+		<if test='address == "ks"' >'%'||강서구||'%'</if>
+		<if test='address == "kb"' >'%'||강북구||'%'</if>
+		<if test='address == "ka"' >'%'||관악구||'%'</if>
+		<if test='address == "kj"' >'%'||광진구||'%'</if>
+		<if test='address == "kr"' >'%'||구로구||'%'</if>
+		<if test='address == "kc"' >'%'||금천구||'%'</if>
+		<if test='address == "nw"' >'%'||노원구||'%'</if>
+		<if test='address == "ddm"'>'%'||동대문구||'%'</if>
+		<if test='address == "db"' >'%'||도봉구||'%'</if>
+		<if test='address == "dj"' >'%'||동작구||'%'</if>
+		<if test='address == "mp"' >'%'||마포구||'%'</if>
+		<if test='address == "sdm"'>'%'||서대문구||'%'</if>
+		<if test='address == "sd"' >'%'||성동구||'%'</if>
+		<if test='address == "sb"' >'%'||성북구||'%'</if>
+		<if test='address == "sc"' >'%'||서초구||'%'</if>
+		<if test='address == "sp"' >'%'||송파구||'%'</if>
+		<if test='address == "ydp"'>'%'||영등포구%</if>
+		<if test='address == "ys"' >'%'||용산구||'%'</if>
+		<if test='address == "yc"' >'%'||양천구||'%'</if>
+		<if test='address == "yp"' >'%'||은평구||'%'</if>
+		<if test='address == "jongro"'>'%'||종로구||'%'</if>
+		<if test='address == "j"' >'%'||중구||'%'</if>
+		<if test='address == "jungrang"'>'%'||중랑구||'%'</if>
+	</select>
+
 </mapper>
